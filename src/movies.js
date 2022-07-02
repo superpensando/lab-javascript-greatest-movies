@@ -33,8 +33,9 @@ function getAllDirectors(moviesArray) {
 }*/
 //console.log(howManyMovies(movies)); ==> 4 (it works)
 
-// Optimization: is not necesary foreach, exists method includes()
-// Optimization: is not necessary let count, like is the same array you can calculate the lenght of the array. 
+// Optimization: is not necesary foreach, exists method includes().
+// Optimization: is not necessary let count, is the same array you can calculate the lenght of the array. 
+
 function howManyMovies(moviesArray) {
   if (!moviesArray) { return 0; }
   else {
@@ -92,14 +93,16 @@ function dramaMoviesScore(moviesArray) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
   moviesArray.sort(function (a, b) {
-     return a.year - b.year;
+     return (a.year - b.year || a.title.localeCompare(b.title)); //==> Order by year & then by title
   });
-  return moviesArray;
+  const newMoviesArray=[...moviesArray];
+  return newMoviesArray;
 }
 console.log(orderByYear(movies));
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
+
 
 }
 
