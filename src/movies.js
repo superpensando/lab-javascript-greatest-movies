@@ -49,9 +49,6 @@ function howManyMovies(moviesArray) {
 }
 console.log(howManyMovies(movies));
 
-// Tampoco hace falta el let count, como no crea un nuevo array, con el lenght es suficiente. 
-
-
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
   const moviesLength=moviesArray.length; 
