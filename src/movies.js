@@ -11,36 +11,39 @@ function getAllDirectors(moviesArray) {
   });
   return allDirectors; 
 }
+// Bonus indexof()
 //console.log(getAllDirectors(movies));
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
   if (!moviesArray) { return 0; }
   else {
-    let sum = 0; 
+    let count = 0; 
     const moviesSpielberg = moviesArray.filter(function (movie) {
         if (movie.director === 'Steven Spielberg') {
           movie.genre.forEach(function(genre1){ 
              if (genre1 === "Drama") {
-              sum++; 
+              count++; 
              }
           });
         }
     });
-    return sum;
+    return count;
   }
 }
-console.log(howManyMovies(movies));
+// No hace falta hacer el foreach, existe includes() que te busca directamente un string.
+// Tampoco hace falta el let count, como no crea un nuevo array, con el lenght es suficiente. 
+//console.log(howManyMovies(movies));
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
   const moviesLength=moviesArray.length; 
   if (moviesLength > 0) {
     const scoresAverageMovies = moviesArray.reduce(function (sum, movie) {
-      if (!movie.score) {
-        return 1; 
-      } else {
+      if (typeof movie.score === "number")  {
         return (sum + movie.score);
+      } else {
+        return 1;
       }
     }, 0); // initialValue to 0
     const scoresAverageMoviesTotal=(scoresAverageMovies/moviesLength).toFixed(2);
