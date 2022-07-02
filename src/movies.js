@@ -31,7 +31,7 @@ function getAllDirectors(moviesArray) {
     return count;
   }
 }*/
-//console.log(howManyMovies(movies)); ==> 4
+//console.log(howManyMovies(movies)); ==> 4 (it works)
 
 // Optimization: is not necesary foreach, exists method includes()
 // Optimization: is not necessary let count, like is the same array you can calculate the lenght of the array. 
@@ -47,7 +47,7 @@ function howManyMovies(moviesArray) {
     return moviesSpielbergLength;
   }
 }
-console.log(howManyMovies(movies));
+//console.log(howManyMovies(movies));
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
@@ -66,10 +66,28 @@ function scoresAverage(moviesArray) {
     return 0;
   }
 }
-console.log(scoresAverage(movies));
+//console.log(scoresAverage(movies));
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+  if (!moviesArray) { return 0; }
+  else {
+    const moviesDrama = moviesArray.filter(function (movie) {
+        if ( movie.genre.includes("Drama")) {
+           return movie; 
+        }
+    });
+    const moviesDramaLength=moviesDrama.length;
+    const scoresAverageDramaMovies = moviesDrama.reduce(function (sum, moviesDrama) {
+        return (sum + moviesDrama.score);
+    }, 0); // initialValue to 0
+
+    const dramaMoviesScoreTotal=(scoresAverageDramaMovies/moviesDramaLength).toFixed(2);
+    return (parseFloat(dramaMoviesScoreTotal));
+  }
+ 
+}
+console.log(dramaMoviesScore(movies));
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {}
