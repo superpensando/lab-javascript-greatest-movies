@@ -15,7 +15,7 @@ function getAllDirectors(moviesArray) {
 //console.log(getAllDirectors(movies));
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies(moviesArray) {
+/*function howManyMovies(moviesArray) {
   if (!moviesArray) { return 0; }
   else {
     let count = 0; 
@@ -30,10 +30,27 @@ function howManyMovies(moviesArray) {
     });
     return count;
   }
+}*/
+//console.log(howManyMovies(movies)); ==> 4
+
+// Optimization: is not necesary foreach, exists method includes()
+// Optimization: is not necessary let count, like is the same array you can calculate the lenght of the array. 
+function howManyMovies(moviesArray) {
+  if (!moviesArray) { return 0; }
+  else {
+    const moviesSpielberg = moviesArray.filter(function (movie) {
+        if ((movie.director === 'Steven Spielberg') && (movie.genre.includes("Drama"))) {
+           return movie; 
+        }
+    });
+    const moviesSpielbergLength=moviesSpielberg.length;
+    return moviesSpielbergLength;
+  }
 }
-// No hace falta hacer el foreach, existe includes() que te busca directamente un string.
+console.log(howManyMovies(movies));
+
 // Tampoco hace falta el let count, como no crea un nuevo array, con el lenght es suficiente. 
-//console.log(howManyMovies(movies));
+
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
@@ -61,7 +78,9 @@ function dramaMoviesScore(moviesArray) {}
 function orderByYear(moviesArray) {}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
