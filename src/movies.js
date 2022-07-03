@@ -2,17 +2,37 @@ const movies = require('../src/data');
 //console.log(movies);
 
 // Iteration 1: All directors? - Get the array of all directors.
-// _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
-// How could you "clean" a bit this array and make it unified (without duplicates)?
 
-function getAllDirectors(moviesArray) {
+/*function getAllDirectors(moviesArray) {
   const allDirectors = moviesArray.map(function (movie) {
      return movie.director;
   });
   return allDirectors; 
-}
-// Bonus indexof()
+}*/
 //console.log(getAllDirectors(movies));
+
+// _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
+// How could you "clean" a bit this array and make it unified (without duplicates)?
+
+function getAllDirectors(moviesArray) {
+
+  const moviesArrayLength = moviesArray.length;
+  if (moviesArrayLength > 0 ) {
+    let allDirectorsNotRepeated = [];
+    for (let i = 0; i < moviesArrayLength  ; i++) {
+        //indexOf returns -1 if dont' exists in array
+        if (allDirectorsNotRepeated.indexOf(moviesArray[i].director) === -1 ) {
+          allDirectorsNotRepeated.push(moviesArray[i].director); //If the word exists, dont' push in the new array. 
+        }
+    }
+    return allDirectorsNotRepeated;
+  } else {
+    return null; 
+  }
+
+}
+
+console.log(getAllDirectors(movies));
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 /*function howManyMovies(moviesArray) {
@@ -92,10 +112,10 @@ function dramaMoviesScore(moviesArray) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-  const sortMovilesYearTitle = moviesArray.sort(function (a, b) {
+  const sortMoviesYearTitle = moviesArray.sort(function (a, b) {
      return (a.year - b.year || a.title.localeCompare(b.title)); //==> Order by year & then by title
   });
-  const newMoviesArray=[...sortMovilesYearTitle ];
+  const newMoviesArray=[...sortMoviesYearTitle ];
   return newMoviesArray;
 }
 //console.log(orderByYear(movies));
@@ -146,10 +166,12 @@ function turnHoursToMinutes(moviesArray) {
   let moviesArrayNew =[... moviesArrayDurationNew ]
   return moviesArrayNew;
 }
-console.log(turnHoursToMinutes(movies));
+//console.log(turnHoursToMinutes(movies));
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+}
+//console.log(bestYearAvg(movies));
 
 
 
