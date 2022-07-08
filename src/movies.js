@@ -32,7 +32,7 @@ function getAllDirectors(moviesArray) {
 
 }
 
-console.log(getAllDirectors(movies));
+//console.log(getAllDirectors(movies));
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 /*function howManyMovies(moviesArray) {
@@ -169,9 +169,43 @@ function turnHoursToMinutes(moviesArray) {
 //console.log(turnHoursToMinutes(movies));
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
+// Classmate solution - TODO test that works
 function bestYearAvg(moviesArray) {
+    let bestYearAvg = (arr) => {
+      if (arr.length === 0) return null;
+      let bestYearAvg = { year: 0, avg: 0 };
+      let yearsMapped = [];
+      arr
+        .map((movie) => movie.year)
+        .forEach((year) => {
+          if (!yearsMapped.includes(year)) {
+            yearsMapped.push(year);
+          }
+        });
+      yearsMapped.forEach((year) => {
+        //Get all movies for year
+        let moviesOfYear = arr.filter((movie) => {
+          return movie.year === year;
+        });
+        //Calc Avg of year movies
+        let yearAvg = moviesOfYear.reduce((acc, movie) => {
+          acc += movie.score / moviesOfYear.length;
+          return acc;
+        }, 0);
+        //Compare values
+        if (yearAvg > bestYearAvg.avg) {
+          bestYearAvg.avg = yearAvg;
+          bestYearAvg.year = year;
+        } else if (yearAvg === bestYearAvg.avg) {
+          if (bestYearAvg.year > year) {
+            bestYearAvg.year = year;
+          }
+        }
+      });
+      return `The best year was ${bestYearAvg.year} with an average score of ${bestYearAvg.avg}`;
+    };
 }
-//console.log(bestYearAvg(movies));
+console.log(bestYearAvg(movies));
 
 
 
